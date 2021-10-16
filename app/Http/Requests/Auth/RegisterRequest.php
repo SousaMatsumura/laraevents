@@ -50,10 +50,10 @@ class RegisterRequest extends FormRequest
         ];
     }
 
-    public function messages()
+    /*public function messages()
     {
         return [
-            'required' => 'O campo :attribute deve ser preenchido.',
+            'user.name.required' => 'O campo :attribute deve ser preenchido.',
         ];
-    }
+    }*/
 }

@@ -45,7 +45,7 @@
                             <input
                                 type="text"
                                 name="user[cpf]"
-                                class="form-control {{$errors->has('user.cpf') ? 'is-invalid' : '' }}"
+                                class="form-control cpf {{$errors->has('user.cpf') ? 'is-invalid' : '' }}"
                                 placeholder="CPF"
                                 value="{{ old('user.cpf') }}"
                             >
@@ -83,7 +83,8 @@
                             <input
                                 type="text"
                                 name="address[cep]"
-                                class="form-control {{$errors->has('address.cep') ? 'is-invalid' : '' }}"
+                                id="cep"
+                                class="form-control cep {{$errors->has('address.cep') ? 'is-invalid' : '' }}"
                                 placeholder="CEP"
                                 value="{{ old('address.cep') }}"
                             >
@@ -95,7 +96,8 @@
                             <input
                                 type="text"
                                 name="address[uf]"
-                                class="form-control {{$errors->has('address.uf') ? 'is-invalid' : '' }}"
+                                id="uf"
+                                class="form-control uf {{$errors->has('address.uf') ? 'is-invalid' : '' }}"
                                 placeholder="UF"
                                 value="{{ old('address.uf') }}"
                             >
@@ -107,6 +109,7 @@
                             <input
                                 type="text"
                                 name="address[city]"
+                                id="city"
                                 class="form-control {{$errors->has('address.city') ? 'is-invalid' : '' }}"
                                 placeholder="Cidade"
                                 value="{{ old('address.city') }}"
@@ -119,6 +122,7 @@
                             <input
                                 type="text"
                                 name="address[street]"
+                                id="street"
                                 class="form-control {{$errors->has('address.street') ? 'is-invalid' : '' }}"
                                 placeholder="Logradouro"
                                 value="{{ old('address.street') }}"
@@ -131,6 +135,7 @@
                             <input
                                 type="text"
                                 name="address[number]"
+                                id="number"
                                 class="form-control {{$errors->has('address.number') ? 'is-invalid' : '' }}"
                                 placeholder="Número"
                                 value="{{ old('address.number') }}"
@@ -143,6 +148,7 @@
                             <input
                                 type="text"
                                 name="address[district]"
+                                id="district"
                                 class="form-control {{$errors->has('address.district') ? 'is-invalid' : '' }}"
                                 placeholder="Bairro"
                                 value="{{ old('address.district') }}"
@@ -172,7 +178,7 @@
                             <input
                                 type="text"
                                 name="phones[0][number]"
-                                class="form-control {{$errors->has('phones.0.number') ? 'is-invalid' : '' }}"
+                                class="form-control phone {{$errors->has('phones.0.number') ? 'is-invalid' : '' }}"
                                 placeholder="Telefone"
                                 value="{{ old('phones.0.number') }}"
                             >
@@ -184,7 +190,7 @@
                             <input
                                 type="text"
                                 name="phones[1][number]"
-                                class="form-control {{$errors->has('phones.1.number') ? 'is-invalid' : '' }}"
+                                class="form-control cellphone {{$errors->has('phones.1.number') ? 'is-invalid' : '' }}"
                                 placeholder="Celular"
                                 value="{{ old('phones.1.number') }}"
                             >
@@ -199,5 +205,10 @@
             </form>
         </div>
     </div>
+
+    <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('vendor/jquery-mask/jquery.mask.min.js') }}"></script>
+    <script src="{{ asset('js/auth/register.js') }}"></script>
+
 </body>
 </html>

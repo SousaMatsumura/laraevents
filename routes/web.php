@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\Auth\{LoginController, RegisterController};
 use App\Http\Controllers\Participant\Dashboard\DashboardController as ParticipantDashboardController;
-use App\Http\Controllers\Organization\Dashboard\DashboardController as OrganizationDashboardController;
+use App\Http\Controllers\Organization\
+    {Dashboard\DashboardController as OrganizationDashboardController,
+    Event\EventController};
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,7 +40,21 @@ Route::group(['middleware' => 'auth'], function(){
         ->name('participant.dashboard.index')
         ->middleware('role:participant');
 
-    Route::get('organization/dashboard', [OrganizationDashboardController::class, 'index'])
-        ->name('organization.dashboard.index')
-        ->middleware('role:organization');
+    Route::group([
+            'prefix' => 'organization/',
+            'as' => 'organization.',
+            'middleware' => 'role:organization'
+        ], function(){
+        Route::get('dashboard', [OrganizationDashboardController::class, 'index'])
+            ->name('dashboard.index');
+        Route::group(['prefix' => 'events', 'as' => 'events.'], function(){
+            Route::get('', [EventController::class, 'index'])->name('index');
+            Route::get('/create', [EventController::class, 'create'])->name('create');
+            Route::post('', [EventController::class, 'store'])->name('store');
+            Route::get('/{event}/edit', [EventController::class, 'edit'])->name('edit');
+            Route::put('/{event}', [EventController::class, 'update'])->name('update');
+            Route::delete('/{event}', [EventController::class, 'destroy'])->name('destroy');
+        });
+    });
+    
 });

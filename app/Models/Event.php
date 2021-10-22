@@ -20,6 +20,11 @@ class Event extends Model
         'participants_limit',
     ];
 
+    //relationships
+    public function users(){
+        return $this->belongsToMany(User::class)->withPivot('present');
+    }
+    
     //mutators
     public function setStartDateAttribute($value)
     {
